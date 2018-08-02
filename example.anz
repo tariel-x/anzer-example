@@ -14,7 +14,6 @@ data LNAME={
 }
 
 data PERSON=FNAME&LNAME
-data ALIAS = PERSON
 
 // services
 init :: _ -> SOURCE {
@@ -33,12 +32,12 @@ lName :: SOURCE -> LNAME {
     "env": {}
 }
 
-useraction :: PERSON -> ALIAS {
+useraction :: PERSON -> PERSON {
     "env": {}
 }
 
-demonstrationFunc :: SOURCE -> PERSON
-demonstrationFunc = <fname,lname> . init
+demonstrationFunc :: _ -> PERSON
+demonstrationFunc = <fname,lName> . init
 
 // main process definition
 main :: _ -> PERSON
