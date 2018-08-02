@@ -1,0 +1,3 @@
+RMQ=amqp://guest:guest@172.25.0.1:5673/
+IN=init
+OUT=fname
