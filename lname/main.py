@@ -22,7 +22,7 @@ channel = connection.channel()
 channel.exchange_declare(exchange='anzer',
                          exchange_type='direct')
 
-result = channel.queue_declare(queue=IN)
+result = channel.queue_declare(queue=IN + '-' + OUT)
 queue_name = result.method.queue
 
 channel.queue_bind(exchange='anzer',
