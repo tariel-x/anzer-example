@@ -28,7 +28,7 @@ fname :: SOURCE -> FNAME {
     }
 }
 
-lName :: SOURCE -> LNAME {
+lname :: SOURCE -> LNAME {
     "env": {}
 }
 
@@ -37,7 +37,7 @@ useraction :: PERSON -> PERSON {
 }
 
 demonstrationFunc :: _ -> PERSON
-demonstrationFunc = <fname,lName> . init
+demonstrationFunc = <fname,lname> . init
 
 // main process definition
 main :: _ -> PERSON

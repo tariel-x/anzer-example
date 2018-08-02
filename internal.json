@@ -1,6 +1,6 @@
 {
     "Services": {
-        "_fname_lName": {
+        "_fname_lname": {
             "0": {
                 "Index": 0,
                 "Type": "production",
@@ -8,8 +8,8 @@
                     "FNAME",
                     "LNAME"
                 ],
-                "Name": "_fname_lName",
-                "UniqueName": "_fname_lName.0",
+                "Name": "_fname_lname",
+                "UniqueName": "_fname_lname.0",
                 "Config": {
                     "EnvIn": "",
                     "EnvOut": "",
@@ -45,12 +45,12 @@
                 }
             }
         },
-        "lName": {
+        "lname": {
             "0": {
                 "Index": 0,
                 "Type": "lambda",
-                "Name": "lName",
-                "UniqueName": "lName.0",
+                "Name": "lname",
+                "UniqueName": "lname.0",
                 "Config": {
                     "EnvIn": "",
                     "EnvOut": "",
@@ -75,11 +75,11 @@
     "Dependencies": [
         {
             "From": "fname.0",
-            "To": "_fname_lName.0"
+            "To": "_fname_lname.0"
         },
         {
-            "From": "lName.0",
-            "To": "_fname_lName.0"
+            "From": "lname.0",
+            "To": "_fname_lname.0"
         },
         {
             "From": "init.0",
@@ -87,10 +87,10 @@
         },
         {
             "From": "init.0",
-            "To": "lName.0"
+            "To": "lname.0"
         },
         {
-            "From": "_fname_lName.0",
+            "From": "_fname_lname.0",
             "To": "useraction.0"
         }
     ]
