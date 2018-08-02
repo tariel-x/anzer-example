@@ -1,0 +1,45 @@
+data SOURCE = {
+    "title": "Language",
+    "type": "string"
+}
+
+data FNAME = {
+   "title": "First name",
+   "type": "string"
+}
+
+data LNAME={
+   "title": "Last name",
+   "type": "string"
+}
+
+data PERSON=FNAME&LNAME
+data ALIAS = PERSON
+
+// services
+init :: _ -> SOURCE {
+    "env": {}
+}
+
+fname :: SOURCE -> FNAME {
+    "env_input": "INPUT",
+    "env_output": "OUTPUT",
+    "env": {
+        "MODE": "1"
+    }
+}
+
+lName :: SOURCE -> LNAME {
+    "env": {}
+}
+
+useraction :: PERSON -> ALIAS {
+    "env": {}
+}
+
+demonstrationFunc :: SOURCE -> PERSON
+demonstrationFunc = <fname,lname> . init
+
+// main process definition
+main :: _ -> PERSON
+main = useraction . demonstrationFunc

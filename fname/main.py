@@ -5,15 +5,24 @@ import os
 from random import randint
 
 RMQ = os.environ['RMQ']
-OUT = os.environ['OUT']
-IN = os.environ['IN']
+OUT = os.environ['OUTPUT']
+IN = os.environ['INPUT']
+MODE = os.environ['MODE']
 
-NAMES = [
+NAMES1 = [
     'Agata',
     'Daniela',
     'Julia',
     'Sara',
     'Blanca'
+]
+
+NAMES2 = [
+    'Bernardita',
+    'Gertrudis',
+    'Elena',
+    'Isabel',
+    'Ines'
 ]
 
 connection = pika.BlockingConnection(pika.URLParameters(RMQ))
@@ -36,7 +45,10 @@ def callback(ch, method, properties, body):
 
     if body == 'spanish':
         nameNum = randint(0, 4)
-        name = NAMES[nameNum]
+        if MODE == '1':
+            name = NAMES1[nameNum]
+        else:
+            name = NAMES2[nameNum]
 
     channel.basic_publish(exchange='anzer',
                           routing_key=OUT,
