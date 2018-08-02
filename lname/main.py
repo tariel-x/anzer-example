@@ -36,7 +36,7 @@ def callback(ch, method, properties, body):
 
     if body == 'spanish':
         nameNum = randint(0, 4)
-        name = NAMES[nameNum]
+        name = '"' + NAMES[nameNum] + '"'
 
     channel.basic_publish(exchange='anzer',
                           routing_key=OUT,
