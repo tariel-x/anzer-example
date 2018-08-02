@@ -4,6 +4,7 @@ import sys
 import os
 import tornado.ioloop
 import tornado.web
+import time
 
 RMQ = os.environ['RMQ']
 OUT = os.environ['OUT']
@@ -19,8 +20,12 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         message = 'spanish'
 
+        ts = int(time.time())
         channel.basic_publish(exchange='anzer',
                             routing_key=OUT,
+                              properties=pika.BasicProperties(
+                                  headers={'pid': str(ts)}
+                              ),
                             body=message)
         print(" [x] Sent %r:%r" % (OUT, message))
 
