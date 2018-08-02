@@ -12,7 +12,7 @@ channel = connection.channel()
 channel.exchange_declare(exchange='anzer',
                          exchange_type='direct')
 
-result = channel.queue_declare(exclusive=False, queue=IN, durable=True)
+result = channel.queue_declare(queue=IN)
 queue_name = result.method.queue
 
 channel.queue_bind(exchange='anzer',
