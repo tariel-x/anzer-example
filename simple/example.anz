@@ -1,0 +1,30 @@
+data SOURCE = {
+    "title": "Language",
+    "type": "string"
+}
+
+data FNAME = {
+   "title": "First name",
+   "type": "string"
+}
+
+// services
+init :: _ -> SOURCE {
+    "env": {}
+}
+
+fname :: SOURCE -> FNAME {
+    "env_input": "INPUT",
+    "env_output": "OUTPUT",
+    "env": {
+        "MODE": "1"
+    }
+}
+
+useraction :: FNAME -> FNAME {
+    "env": {}
+}
+
+// main process definition
+main :: _ -> FNAME
+main = useraction . fname . init
