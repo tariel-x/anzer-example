@@ -13,6 +13,6 @@ type TypeIn struct {
 
 type TypeOut int
 
-func handle(input TypeIn) TypeOut {
+func Handle(input TypeIn) TypeOut {
 	return 0
 }

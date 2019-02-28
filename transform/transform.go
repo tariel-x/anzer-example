@@ -15,7 +15,7 @@ type TypeOut struct {
 	Year        *int     `json:"year"`
 }
 
-func handle(input TypeIn) TypeOut {
+func Handle(input TypeIn) TypeOut {
 	output := TypeOut{}
 	json.Unmarshal([]byte(input), &output)
 	return output

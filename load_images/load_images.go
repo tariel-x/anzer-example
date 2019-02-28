@@ -20,7 +20,7 @@ type TypeOut struct {
 	Year        *int     `json:"year"`
 }
 
-func handle(input TypeIn) TypeOut {
+func Handle(input TypeIn) TypeOut {
 	return TypeOut{
 		Name        : input.Name,
 		Description : input.Description,
