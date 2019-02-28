@@ -1,4 +1,0 @@
-RMQ=amqp://guest:guest@172.25.0.1:5673/
-INPUT=init
-OUTPUT=fname
-MODE=1
