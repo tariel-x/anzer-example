@@ -25,7 +25,7 @@ type TypeOut struct {
 }
 
 func Handle(input TypeIn) TypeOut {
-	modelGeneration := strings.Split(input.Model, "_")
+	modelGeneration := strings.Split(input.Model, " ")
 	model := ""
 	if len(modelGeneration) >= 1 {
 		model = modelGeneration[0]
