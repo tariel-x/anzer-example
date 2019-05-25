@@ -5,36 +5,14 @@ import (
 	"net/url"
 )
 
-type TypeIn struct {
-	Body       *string  `json:"body"`
-	Brand      string   `json:"brand"`
-	Generation string   `json:"generation"`
-	Model      string   `json:"model"`
-	Phone      string   `json:"phone"`
-	Price      int      `json:"price"`
-	RawImages  []string `json:"rawImages"`
-	Year       int      `json:"year"`
-}
-
-type TypeOut struct {
-	Body       *string  `json:"body"`
-	Brand      string   `json:"brand"`
-	Generation string   `json:"generation"`
-	Model      string   `json:"model"`
-	Phone      string   `json:"phone"`
-	Photos     []string `json:"photos"`
-	Price      int      `json:"price"`
-	Year       int      `json:"year"`
-}
-
-func Handle(input TypeIn) TypeOut {
+func handler(input HandlerIn) HandlerOut {
 	photos := make([]string, 0, len(input.RawImages))
 	for _, raw := range input.RawImages {
 		u, _ := url.Parse(raw)
 		u.Host = "storage.org"
 		photos = append(photos, u.String())
 	}
-	return TypeOut{
+	model := EitherLeft{
 		Body:       input.Body,
 		Brand:      input.Brand,
 		Generation: input.Generation,
@@ -43,5 +21,9 @@ func Handle(input TypeIn) TypeOut {
 		Price:      input.Price,
 		Photos:     photos,
 		Year:       input.Year,
+	}
+	return HandlerOut{
+		Left:  &model,
+		Right: nil,
 	}
 }

@@ -32,8 +32,10 @@ type Ready = {
 
 type Saved = {
     id         :: Integer
-    brand      :: String
-    model      :: String
+    car :: {
+        brand :: String
+        model :: String
+    }
     generation :: String
     price      :: Integer
     year       :: Integer
@@ -41,12 +43,15 @@ type Saved = {
     photos     :: []String
     phone      :: String
 }
+type Error = {
+    error :: String
+}
 
-github.com/tariel-x/anzer-example/transform[go] :: Source -> Prepared
-github.com/tariel-x/anzer-example/load_images[go] :: Prepared -> Ready
-github.com/tariel-x/anzer-example/create[go] :: Ready -> Saved
+github.com/tariel-x/anzer-example/transform[go] :: Source -> Either Prepared Error
+github.com/tariel-x/anzer-example/load_images[go] :: Prepared -> Either Ready Error
+github.com/tariel-x/anzer-example/create[go] :: Ready -> Either Saved Error
 
-etl = transform . load_images . create
+etl = transform >>= load_images >>= create
 
 invoke (
    etl,

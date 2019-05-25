@@ -3,28 +3,7 @@ package transform
 
 import "strings"
 
-type TypeIn struct {
-	Body   *string  `json:"body"`
-	Brand  string   `json:"brand"`
-	Model  string   `json:"model"`
-	Phone  string   `json:"phone"`
-	Photos []string `json:"photos"`
-	Price  float64  `json:"price"`
-	Year   int      `json:"year"`
-}
-
-type TypeOut struct {
-	Body       *string  `json:"body"`
-	Brand      string   `json:"brand"`
-	Generation string   `json:"generation"`
-	Model      string   `json:"model"`
-	Phone      string   `json:"phone"`
-	Price      int      `json:"price"`
-	RawImages  []string `json:"rawImages"`
-	Year       int      `json:"year"`
-}
-
-func Handle(input TypeIn) TypeOut {
+func handler(input HandlerIn) HandlerOut {
 	modelGeneration := strings.Split(input.Model, " ")
 	model := ""
 	if len(modelGeneration) >= 1 {
@@ -34,7 +13,7 @@ func Handle(input TypeIn) TypeOut {
 	if len(modelGeneration) >= 2 {
 		generation = modelGeneration[1]
 	}
-	return TypeOut{
+	ret := EitherLeft{
 		Body:       input.Body,
 		Brand:      input.Brand,
 		Generation: generation,
@@ -43,5 +22,9 @@ func Handle(input TypeIn) TypeOut {
 		Price:      int(input.Price),
 		RawImages:  input.Photos,
 		Year:       input.Year,
+	}
+	return HandlerOut{
+		Left:  &ret,
+		Right: nil,
 	}
 }
