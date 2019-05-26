@@ -1,10 +1,7 @@
-// Thank robots for this file that was generated for you at 2019-05-25 16:08:51.973326447 +0300 MSK m=+0.008347686
+// Thank robots for this file that was generated for you at 2019-05-26 23:08:30.970732446 +0300 MSK m=+0.008845662
 package create
 
-type EitherRight struct {
-	Error string `json:"error"`
-}
-type HandlerIn struct {
+type TypeIn struct {
 	Body       *string  `json:"body"`
 	Brand      string   `json:"brand"`
 	Generation string   `json:"generation"`
@@ -14,24 +11,26 @@ type HandlerIn struct {
 	Price      int      `json:"price"`
 	Year       int      `json:"year"`
 }
-type HandlerOut struct {
-	Left  *EitherLeft  `json:"left"`
-	Right *EitherRight `json:"right"`
-}
-type EitherLeft struct {
-	Body *string `json:"body"`
-	Car  struct {
-		Brand string `json:"brand"`
-		Model string `json:"model"`
-	} `json:"car"`
-	Generation string   `json:"generation"`
-	Id         int      `json:"id"`
-	Phone      string   `json:"phone"`
-	Photos     []string `json:"photos"`
-	Price      int      `json:"price"`
-	Year       int      `json:"year"`
+
+type TypeOut struct {
+	Left *struct {
+		Body *string `json:"body"`
+		Car  struct {
+			Brand string `json:"brand"`
+			Model string `json:"model"`
+		} `json:"car"`
+		Generation string   `json:"generation"`
+		Id         int      `json:"id"`
+		Phone      string   `json:"phone"`
+		Photos     []string `json:"photos"`
+		Price      int      `json:"price"`
+		Year       int      `json:"year"`
+	} `json:"left"`
+	Right *struct {
+		Error string `json:"error"`
+	} `json:"right"`
 }
 
-func Handle(input HandlerIn) HandlerOut {
+func Handle(input TypeIn) TypeOut {
 	return handler(input)
 }
