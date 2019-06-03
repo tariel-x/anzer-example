@@ -3,15 +3,20 @@ package transform
 import "strings"
 
 func handler(input TypeIn) TypeOut {
-	modelGeneration := strings.Split(input.Model, " ")
-	model := ""
-	if len(modelGeneration) >= 1 {
-		model = modelGeneration[0]
+	modelGeneration := strings.Split(input.Model, ";")
+	if len(modelGeneration) < 2 {
+		return TypeOut{
+			Left: nil,
+			Right: &struct {
+				Error string `json:"error"`
+			}{
+				Error: "model field must contain `model;generation`",
+			},
+		}
 	}
-	generation := ""
-	if len(modelGeneration) >= 2 {
-		generation = modelGeneration[1]
-	}
+	model := modelGeneration[0]
+	generation := modelGeneration[1]
+
 	return TypeOut{
 		Left: &struct {
 			Body       *string  `json:"body"`
