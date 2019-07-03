@@ -47,11 +47,21 @@ type Error = {
     error :: String
 }
 
+type Result = {
+    id    :: *Integer
+    car   :: *{
+        brand :: String
+        model :: String
+    }
+    error :: *String
+}
+
 github.com/tariel-x/anzer-example/transform[go] :: Source -> Either Prepared Error
 github.com/tariel-x/anzer-example/load_images[go] :: Prepared -> Either Ready Error
 github.com/tariel-x/anzer-example/create[go] :: Ready -> Either Saved Error
+github.com/tariel-x/anzer-example/result[go] :: Either Saved Error -> Result
 
-etl = transform >>= load_images >>= create
+etl = transform >>= load_images >>= create . result
 
 invoke (
    etl,
