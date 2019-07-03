@@ -3,7 +3,7 @@ package result
 func handler(input TypeIn) TypeOut {
 	if input.Right != nil {
 		return TypeOut{
-			Error: &input.Right.Error,
+			Err: &input.Right.Error,
 		}
 	} else if input.Left != nil {
 		return TypeOut{
@@ -19,6 +19,6 @@ func handler(input TypeIn) TypeOut {
 	}
 	err := "no left neither right"
 	return TypeOut{
-		Error: &err,
+		Err: &err,
 	}
 }

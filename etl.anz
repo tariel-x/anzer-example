@@ -53,7 +53,7 @@ type Result = {
         brand :: String
         model :: String
     }
-    error :: *String
+    err :: *String
 }
 
 github.com/tariel-x/anzer-example/transform[go] :: Source -> Either Prepared Error
