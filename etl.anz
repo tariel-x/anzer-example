@@ -1,3 +1,5 @@
+package anzer_test
+
 type Source = {
     brand  :: String
     model  :: String
