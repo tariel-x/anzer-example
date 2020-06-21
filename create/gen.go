@@ -1,4 +1,4 @@
-// Thank robots for this file that was generated for you at 2019-05-26 23:08:30.970732446 +0300 MSK m=+0.008845662
+// Thank robots for this file that was generated for you at 2020-06-22 00:01:25.239190001 +0300 MSK m=+0.042276868
 package create
 
 type TypeIn struct {
@@ -20,7 +20,7 @@ type TypeOut struct {
 			Model string `json:"model"`
 		} `json:"car"`
 		Generation string   `json:"generation"`
-		Id         int      `json:"id"`
+		Id         string   `json:"id"`
 		Phone      string   `json:"phone"`
 		Photos     []string `json:"photos"`
 		Price      int      `json:"price"`
@@ -32,5 +32,6 @@ type TypeOut struct {
 }
 
 func Handle(input TypeIn) TypeOut {
-	return handler(input)
+	var out TypeOut
+	return out
 }

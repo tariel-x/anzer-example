@@ -1,0 +1,2 @@
+github.com/tariel-x/anzer-example/create:
+    CLOUDANT_URL: "https://user:pass@server:port"
