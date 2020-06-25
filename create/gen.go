@@ -32,6 +32,5 @@ type TypeOut struct {
 }
 
 func Handle(input TypeIn) TypeOut {
-	var out TypeOut
-	return out
+	return handler(input)
 }
