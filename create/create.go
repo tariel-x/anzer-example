@@ -18,7 +18,7 @@ type DbModel struct {
 
 func handler(input TypeIn) TypeOut {
 	log.Println(os.Environ())
-	client, err := kivik.New("couch", os.Getenv("CLOUDANT_URL"))
+	client, err := kivik.New("couch", os.Getenv("__ANZ_CLOUDANT_URL"))
 	if err != nil {
 		return right(fmt.Errorf("can not connect couch: %q", err))
 	}
