@@ -1,4 +1,4 @@
-// Thank robots for this file that was generated for you at 2019-07-04 01:25:04.747985129 +0300 MSK m=+0.056942953
+// Thank robots for this file that was generated for you at 2020-07-05 14:58:13.415304434 +0300 MSK m=+0.040382528
 package result
 
 type TypeIn struct {
@@ -9,7 +9,7 @@ type TypeIn struct {
 			Model string `json:"model"`
 		} `json:"car"`
 		Generation string   `json:"generation"`
-		Id         int      `json:"id"`
+		Id         string   `json:"id"`
 		Phone      string   `json:"phone"`
 		Photos     []string `json:"photos"`
 		Price      int      `json:"price"`
@@ -26,7 +26,7 @@ type TypeOut struct {
 		Model string `json:"model"`
 	} `json:"car"`
 	Err *string `json:"err"`
-	Id  *int    `json:"id"`
+	Id  *string `json:"id"`
 }
 
 func Handle(input TypeIn) TypeOut {
