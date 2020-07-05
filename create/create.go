@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 
 	_ "github.com/go-kivik/couchdb/v4"
@@ -16,6 +17,7 @@ type DbModel struct {
 }
 
 func handler(input TypeIn) TypeOut {
+	log.Println(os.Environ())
 	client, err := kivik.New("couch", os.Getenv("CLOUDANT_URL"))
 	if err != nil {
 		return right(fmt.Errorf("can not connect couch: %q", err))
