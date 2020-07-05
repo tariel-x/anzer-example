@@ -3,6 +3,7 @@ package create
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"os"
 
 	_ "github.com/go-kivik/couchdb/v4"
@@ -17,10 +18,10 @@ type DbModel struct {
 func handler(input TypeIn) TypeOut {
 	client, err := kivik.New("couch", os.Getenv("CLOUDANT_URL"))
 	if err != nil {
-		return right(err)
+		return right(fmt.Errorf("can not connect couch: %q", err))
 	}
 
-	db := client.DB(context.TODO(), "posts")
+	db := client.DB(context.Background(), "posts")
 
 	out := OutLeft{
 		Body: input.Body,
@@ -41,12 +42,12 @@ func handler(input TypeIn) TypeOut {
 
 	doc, err := json.Marshal(newDoc)
 	if err != nil {
-		return right(err)
+		return right(fmt.Errorf("can not marshall new doc: %q", err))
 	}
 
-	id, _, err := db.CreateDoc(context.TODO(), doc)
+	id, _, err := db.CreateDoc(context.Background(), doc)
 	if err != nil {
-		return right(err)
+		return right(fmt.Errorf("can not save new doc: %q", err))
 	}
 
 	out.Id = id
